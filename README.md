@@ -1,9 +1,30 @@
 # Blog com Painel Administrativo
 
 ## ℹ Sobre
-Servidor desenvolvido durante o curso Formação NodeJS com o intuito de desenvolver minhas habilidades em NodeJS.
+Projeto desenvolvido para disciplina de Sistemas Distribuídos, ministrada por Robson Medeiros.
 
-O blog possui como intuito divulgação de artigos das mais variadas categorias.
+Blog para publicação de artigos.
+
+## Módulos
+
+```mermaid
+graph TD
+
+subgraph Backend API
+  UserModel --> ArticleModel
+  UserModel --> CategoriesModel
+  ArticleModel --> CategoriesModel
+end
+
+subgraph Frontend
+  BlogFrontend --> APIData
+  BlogFrontend --> ValidationService
+end
+
+ValidationService -->|Validates user email and password| UserAccount
+
+APIData -->|Requests data from| BackendAPI
+```
 
 ## 🛠 Tecnologias Utilizadas
 - NodeJS
@@ -11,6 +32,7 @@ O blog possui como intuito divulgação de artigos das mais variadas categorias.
 - Sequelize
 - EJS
 - TinyMCE
+- FastAPI
 
 ## ☑ Funcionalidades
 
@@ -18,6 +40,7 @@ O blog possui como intuito divulgação de artigos das mais variadas categorias.
   - [x] Categorias
   - [x] Artigos 
 - [x] Criação de contas, login e logout
+- [x] Validação de endereço de email e senha forte ao criar conta
 
 ## 🌐 Interface Web
 
@@ -28,14 +51,3 @@ O blog possui como intuito divulgação de artigos das mais variadas categorias.
 É necessário ter o NodeJS instalado na sua máquina, além de um gerenciador de pacotes, como o npm ou yarn para executar o servidor.
 
 Além disso, o banco de dados deve estar configurado e rodando no momento da execução.
-
-```sh
-# Para instalar todas as dependências, execute:
-$ yarn
-# Para iniciar a aplicação, execute
-$ yarn dev
-```
-
-## 📄 Licença
-
-Hospedado sob a licença MIT.
