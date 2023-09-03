@@ -1,0 +1,22 @@
+<%- include('partials/header'); -%>
+<%- include('partials/user-navbar'); -%>
+
+<div class="bg-light p-5 rounded-lg mt-3">
+  <h1 class="display-4">Olá!</h1>
+  <p class="lead">Este é um blog desenvolvido para disciplina de Sistemas Distribuídos</p>
+</div>
+
+<% articles.forEach((article) => { %>
+  <div class="card mt-3">
+    <div class="card-header">
+      <h3><%= article.title %></h3>
+    </div>
+    <div class="card-body">
+      <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+    </div>
+  </div>
+<% }); %>
+
+<a href="/articles/page/2" class="btn mt-3 mb-3" style="float: right">Próximo >>></a>
+
+<%- include('partials/footer'); -%>

@@ -1,0 +1,38 @@
+<%- include('../../partials/header'); -%>
+<%- include('../../partials/admin-navbar'); -%>
+<div class="card mt-3 mb-3">
+  <div class="card-header">Criação de Usuário</div>
+  <div class="card-body">
+    <form onsubmit="return false">
+      <input name="email" id="email" type="email" placeholder="email@exemplo.com" class="form-control mb-3">
+      <input name="password" id="password" type="password" placeholder="*******" class="form-control mb-3">
+      <button class="btn btn-success" onclick="submitForm()">Criar</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function submitForm() {
+    var emailField = document.getElementById('email');
+    var passwordField = document.getElementById('password');
+
+    axios.post('http://127.0.0.1:8000/validate', {
+      email: emailField.value,
+      password: passwordField.value
+    }).then((response) => {
+      axios.post('http://localhost:5500/users/save', {
+        email: emailField.value,
+        password: passwordField.value
+      }).then((response) => {
+        alert('Usuário criado com sucesso.')
+      }).catch((error) => {
+        alert('Erro ao criar usuário. ' + error.response.data.detail)
+      })
+    }).catch((error) => {
+      alert('Erro ao criar usuário. ' + error.response.data.detail)
+    }
+    );
+  }
+</script>
+
+<%- include('../../partials/footer'); -%>

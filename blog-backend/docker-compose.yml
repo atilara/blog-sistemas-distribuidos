@@ -1,0 +1,19 @@
+version: '3.8'
+
+# Creates mysql container that will be used by the blog application
+# The container is named blog_mysql
+# The container is restarted automatically if it stops
+# The container is exposed on port 3306
+# The container is configured to allow empty password
+# The container is configured to create a database named blog
+
+services:
+  db:
+    image: mysql:latest
+    container_name: blog_mysql
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: blog
+    ports:
+      - "3306:3306"
