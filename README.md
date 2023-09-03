@@ -10,20 +10,25 @@ Blog para publicação de artigos.
 ```mermaid
 graph TD
 
-subgraph Backend API
-  UserModel --> ArticleModel
-  UserModel --> CategoriesModel
-  ArticleModel --> CategoriesModel
+subgraph BackendAPI
+  UserModel
+  CategoriesModel
+  ArticleModel <--> CategoriesModel
 end
 
-subgraph Frontend
-  BlogFrontend --> APIData
-  BlogFrontend --> ValidationService
+subgraph ValidateUserAccount
+  Email
+  Password
 end
 
-ValidationService -->|Validates user email and password| UserAccount
+subgraph BlogFrontend
+  Frontend --> APIData
+  Frontend --> ValidationService
+end
 
-APIData -->|Requests data from| BackendAPI
+ValidationService <-->|Validates user email and password| ValidateUserAccount
+
+APIData <-->|Requests data from| BackendAPI
 ```
 
 ## 🛠 Tecnologias Utilizadas
