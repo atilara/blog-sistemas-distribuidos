@@ -53,7 +53,7 @@ app.use('/', userController);
 
 app.get('/', (req, res) => {
   // Ordenando de forma decrescente através do order
-  Article.findAll({ order: [['id', 'DESC']], limit: 4 }).then((articles) => {
+  Article.findAll({ order: [['id', 'DESC']] }).then((articles) => {
     Category.findAll().then((categories) => {
       res.json({ articles: articles, categories: categories });
     });
